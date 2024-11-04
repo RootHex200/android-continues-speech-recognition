@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg"
+    android:orientation="vertical">
+    <ProgressBar
+        android:id="@+id/progressBar1"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:indeterminate="true"
+        android:visibility="gone"
+         />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="60dp" />
+    <Spinner
+        android:layout_gravity="center_horizontal"
+        android:gravity="center_horizontal"
+        android:id="@+id/spinner1"
+        android:tooltipText="Select name"
+
+        android:backgroundTint="@color/white"
+        android:layout_width="150dp"
+        android:layout_height="50dp" />
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="100dp"/>
+    <Button
+        android:backgroundTint="@color/pinkcolor"
+        android:layout_gravity="center_horizontal"
+        android:id="@+id/btnStartListen"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Start Listening" />
+
+    <Button
+        android:backgroundTint="@color/pinkcolor"
+        android:layout_gravity="center_horizontal"
+        android:id="@+id/forcestop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Force Stop"
+        />
+    <TextView
+        android:visibility="visible"
+        android:layout_gravity="center_horizontal"
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        tools:text="Output will be displayed here" />
+
+<!--    <TextView-->
+<!--        android:visibility="visible"-->
+<!--        android:layout_gravity="center_horizontal"-->
+<!--        android:id="@+id/tvError"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="50dp"-->
+<!--        tools:text="Error will be displayed here" />-->
+
+</LinearLayout>
