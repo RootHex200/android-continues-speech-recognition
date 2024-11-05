@@ -4,6 +4,7 @@ import android.Manifest
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.media.AudioManager
 import android.os.Bundle
 import android.speech.RecognitionListener
 import android.speech.RecognizerIntent
@@ -14,7 +15,6 @@ import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
-import androidx.annotation.LongDef
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -43,12 +43,14 @@ class MainActivity : AppCompatActivity() {
     lateinit var textTospek:TextToSpeech
     private var speechRecognizer: SpeechRecognizer? = null
     private var recognizerIntent: Intent? = null
-
+    private var audiomanager:AudioManager?=null
 
     private var selectedLanguage = "en" // Default "en selected"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        audiomanager = getSystemService(AUDIO_SERVICE) as AudioManager
+        audiomanager!!.setStreamMute(AudioManager.STREAM_NOTIFICATION, true)
         textTospek= TextToSpeech(this,TextToSpeech.OnInitListener {
                 status->
 
@@ -70,6 +72,7 @@ class MainActivity : AppCompatActivity() {
         resetSpeechRecognizer()
         setRecogniserIntent()
         prepareLocales()
+
     }
 
     private fun setListeners() {
@@ -167,8 +170,10 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun startListening() {
-        speechRecognizer!!.startListening(recognizerIntent)
-       // binding.progressBar1.visibility = View.VISIBLE
+
+       speechRecognizer!!.startListening(recognizerIntent)
+        binding.progressBar1.visibility = View.VISIBLE
+
     }
 
     public override fun onResume() {
@@ -188,7 +193,9 @@ class MainActivity : AppCompatActivity() {
 
     override fun onStop() {
         errorLog("stop")
+       // audiomanager?.setStreamMute(AudioManager.STREAM_NOTIFICATION, false)
         super.onStop()
+       // audiomanager!!.setStreamMute(AudioManager.STREAM_MUSIC, false);
         speechRecognizer!!.stopListening()
        // speechRecognizer!!.destroy()
     }
